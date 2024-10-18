@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" async=true>
+(function() {
+  var host = window.location.hostname;
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://cmp.quantcast.com'
+    .concat('/choice/', 'B7Tf7eGZccc3h', '/', host, '/choice.js?tag_version=V2');
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        if(args[0] === 'init' && typeof args[3] === 'object') {
+          args[3] = Object.assign(args[3], { tag_version: 'V2' });
+        }
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            if (event && event.source && event.source.postMessage) {
+              event.source.postMessage(returnMsg, '*');
+            }
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+
+
+    <link rel="shortcut icon" href="https://cdn2.wanderlust.co.uk/siteimages/favicon.ico" type="image/x-icon">
+
+   
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PSWXP4F');</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdPrpIUAAAAAGSRR-svVZQam3PVy4eQw-aGjM5E"></script>
+    
+    <script type="text/javascript" src="https://cdn2.wanderlust.co.uk/sitescripts/essentials.js?ver=BRk0z1vU2Yxwee7VDzm25rMCqKV9swuNilaPBDY1nmA1"></script>
+
+    
+
+    <script>
+        var wl_audio_initialised = false;
+        var wanderlustWebsiteTagging = wanderlustWebsiteTagging || {};
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500,700,800|Open+Sans:400,500,700" rel="stylesheet">
+    <link href="https://cdn2.wanderlust.co.uk/sitescripts/essentialstyles.css?ver=ou7sOf5yeer0qxVK8TCpJz0XzPctrFBYtyMxbxj0kMU1" type="text/css" rel="stylesheet" />
+
+        <link rel="canonical" href="https://www.wanderlust.co.uk/content/oceans-of-the-world-trivia-quiz/">
+
+    <title>Quiz: How Well Do You Know The World&#39;s Oceans?</title>
+   
+    <meta property="twitter.card" content="summary" />
+    <meta property="twitter:site" content="@wanderlustmag" />
+    <meta property="twitter:creator" content="@wanderlustmag" />
+
+    <meta property="og:title" content="Quiz: How Well Do You Know The World's Oceans?" />
+    
+    
+
+            <meta property="og:image" content="https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&amp;mode=crop&amp;width=1200&amp;height=0&amp;rnd=132360939160000000" />
+
+
+    
+    <script>(function (i, s, o, g, r, tid, div, cd, chn, a, m) { i['DSContentObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); i[r].q = i[r].q || []; i[r]('render', tid, div, cd, chn); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g + '?dc_ord=' + Math.round(1E9 * Math.random()); m.parentNode.insertBefore(a, m) })(window, document, 'script', '//render.entheto.traveldesk.io/js/serve.js', 'dsContent', '35', 'div-ds-content-35', '17');</script>
+    <script>
+        var enthetoPresent = false; var adSlot99 = '';
+    </script>
+
+    
+    <script async="async" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+
+
+    <script>
+                (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+                ga('create', 'UA-3142295-1', 'auto');
+                var serverName = 'EC2AMAZ-GPBSEDM';
+                ga('set', 'dimension1', serverName);
+                ga('set', 'dimension2', wanderlustWebsiteTagging.audience);
+                ga('set', 'dimension4', wanderlustWebsiteTagging.regionTags && wanderlustWebsiteTagging.regionTags.dfpValues ? wanderlustWebsiteTagging.regionTags.dfpValues.join(): '');
+                ga('set', 'dimension5', wanderlustWebsiteTagging.destTags && wanderlustWebsiteTagging.destTags.dfpValues ? wanderlustWebsiteTagging.destTags.dfpValues.join() : '');
+                ga('set', 'dimension6', wanderlustWebsiteTagging.triptypes && wanderlustWebsiteTagging.triptypes.dfpValues ? wanderlustWebsiteTagging.triptypes.dfpValues.join() : '');
+                ga('set', 'dimension7', wanderlustWebsiteTagging.experiTages && wanderlustWebsiteTagging.experiTages.dfpValues ? wanderlustWebsiteTagging.experiTages.dfpValues.join() : '');
+                ga('set', 'dimension8', wanderlustWebsiteTagging.subjects && wanderlustWebsiteTagging.subjects.dfpValues ? wanderlustWebsiteTagging.subjects.dfpValues.join() : '');
+
+ga('set', 'dimension3', 'February 2022');
+                ga('send', 'pageview');
+    </script>
+
+</head>
+<style>
+   
+   .answerBlock {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: transparent; 
+    }
+
+    
+    .answerBlock[data-correct="true"].onchange {
+      background-color: green;
+    }
+
+   
+    .answerBlock[data-correct="false"].onchange {
+      background-color: red;
+    }
+  </style>
+<body class="">
+    <script>
+        var path = window.location.pathname;
+        if (path.indexOf('/guides') === 0 && path != '/guides' && path != '/guides/') {
+            document.body.classList.add('guide-page');
+        }
+        else if (path !== '/') {
+            document.body.classList.add('page');
+        }
+    </script>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSWXP4F"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <div id='div-gpt-ad-1496826577017-0' style='height:1px; width:1px;'>
+        <script>
+            googletag.cmd.push(function () {
+                googletag.display('div-gpt-ad-1496826577017-0');
+                googletag.pubads().refresh([singlePixelAd]);
+            });
+        </script>
+    </div>
+
+
+</div>
+   <div class="siteContent">
+        
+        
+    <div class="subscriptionsAdSlot" id="div-gpt-ad-1584357351630-0"></div>
+
+    <div class="bodySection">
+ 
+        <div class="mainImageParallax" style="
+                padding-top: 50px;
+                background-color: #ebeae6;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 100vh;
+            ">
+            <div class="hero-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            
+                            <h1>Quiz: How well do you know the world&#39;s oceans?</h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+
+                 @media only screen and (max-width: 2000px) {
+                    .mainImageParallax {
+                        background-image:linear-gradient(to bottom, transparent, rgb(255,255,255,0.1),rgb(0,0,0,0.7)),url(https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&mode=crop&width=2000&height=1000&format=auto&quality=80&rnd=132360939160000000);
+                        height: 80vh;
+                    }
+                }
+
+                @media only screen and (max-width: 1366px) {
+                    .mainImageParallax {
+                        background-image:linear-gradient(to bottom, transparent, rgb(255,255,255,0.1),rgb(0,0,0,0.7)),url(https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&mode=crop&width=1366&height=850&format=auto&quality=80&rnd=132360939160000000);
+                        height: 80vh;
+                    }
+                }
+
+                 @media only screen and (max-width: 1024px) {
+                    .mainImageParallax {
+                        background-image:linear-gradient(to bottom, transparent, rgb(255,255,255,0.1),rgb(0,0,0,0.7)),url(https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&mode=crop&width=1024&height=1024&format=auto&quality=80&rnd=132360939160000000);
+                        height: 80vh;
+                    }
+                    .mainImageParallax .hero-section {bottom: 50px;}
+                }
+
+                @media only screen and (max-width: 768px) {
+                    .mainImageParallax {
+                        background-image:linear-gradient(to bottom, rgb(0,0,0,0.3),rgb(0,0,0,0.3)),url(https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&mode=crop&width=770&height=850&format=auto&quality=80&rnd=132360939160000000);
+                        height: 100vh;
+                    }
+                    .mainImageParallax .hero-section {bottom: 0px;}
+                }
+
+                @media only screen and (max-width: 450px) {
+                    .mainImageParallax {
+                        background-image:linear-gradient(to bottom, rgb(0,0,0,0.3),rgb(0,0,0,0.3)),url(https://cdn2.wanderlust.co.uk/media/1024/shutterstock_733185379.jpg?anchor=center&mode=crop&width=450&height=850&format=auto&quality=80&rnd=132360939160000000);
+                        height: 100vh;
+                    }
+                }
+
+            </style>
+        </div>
+        
+                        </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+        <script>
+            var adSlot99 = '';
+
+            googletag.cmd.push(function () {
+                adSlot99 = googletag.defineSlot('/12852463/MultiSize_Slot_Standfirst', [[970, 250], [336, 280], [300, 250], [728, 90], [320, 100]], 'div-gpt-ad-1494765176497-0').
+                    defineSizeMapping(adSlotMapping).
+                    addService(googletag.pubads()).
+                    setCollapseEmptyDiv(true, true);
+            });
+        </script>
+        <div class="adSlot standfirstAd" id='div-gpt-ad-1494765176497-0'>
+                <script>
+                    googletag.cmd.push(function () {
+                        googletag.display('div-gpt-ad-1494765176497-0');
+                        googletag.pubads().refresh([adSlot99]);
+                    });
+                </script>
+        </div>
+
+
+
+    <section class="umb-grid">
+                <div class="grid-section">
+                </div>
+    </section>
+
+
+
+
+
+        <section class="quizTrivia">
+            <div class="container triviaQuizQuestionBlock">
+                <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360801360000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 160w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 320w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 480w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 640w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 800w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 960w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1120w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1280w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1440w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1600w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1760w,https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360801360000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1005/shutterstock_746217742.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360801360000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock a">
+                                <div class="questionTextBlock">
+                                    <h3>1. Which ocean is the largest and deepest?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>Pacific Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Atlantic Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Southern Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Indian Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360801620000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 160w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 320w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 480w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 640w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 800w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 960w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1120w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1280w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1440w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1600w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1760w,https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360801620000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1006/shutterstock_1020102115.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360801620000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock b">
+                                <div class="questionTextBlock">
+                                    <h3>2. Which ocean is the smallest and shallowest?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Indian Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Southern Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>Arctic Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Atlantic Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                       
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360802010000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 160w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 320w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 480w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 640w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 800w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 960w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1120w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1280w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1440w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1600w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1760w,https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360802010000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1008/shutterstock_611361698.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360802010000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock a">
+                                <div class="questionTextBlock">
+                                    <h3>3. Which ocean has been found to be the saltiest ocean in the world?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Indian Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>Atlantic Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Pacific Ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Nice try! They&#39;re all pretty salty</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360803630000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 160w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 320w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 480w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 640w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 800w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 960w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1120w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1280w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1440w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1600w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1760w,https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360803630000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1010/shutterstock_1410343970.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360803630000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock c">
+                                <div class="questionTextBlock">
+                                    <h3>4.Can you name the deepest known point in the Pacific?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>The Kermadec Trench</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>The Izu-Ogasawara Trench</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>The South Sandwich Trench</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>The Mariana Trench</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360803910000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 160w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 320w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 480w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 640w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 800w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 960w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1120w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1280w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1440w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1600w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1760w,https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360803910000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1011/shutterstock_1172493256.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360803910000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock a">
+                                <div class="questionTextBlock">
+                                    <h3>5. The Great Barrier Reef is in the Pacific Ocean. How many individual reef systems is it made up of?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Around 200</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Around 1,000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>Around 3,000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Around 6,000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360804200000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 160w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 320w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 480w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 640w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 800w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 960w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1120w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1280w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1440w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1600w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1760w,https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360804200000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1012/shutterstock_1111424489.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360804200000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock b">
+                                <div class="questionTextBlock">
+                                    <h3>6. Which of these countries does not have a territory in the Arctic Ocean?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Norway</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Russia</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Canada</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>Sweden</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360804420000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 160w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 320w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 480w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 640w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 800w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 960w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1120w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1280w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1440w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1600w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1760w,https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360804420000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1013/shutterstock_115078132.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360804420000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock c">
+                                <div class="questionTextBlock">
+                                    <h3>7. The Indian Ocean touches three continents. Which of these continents does NOT touch the Indian Ocean?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Asia</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Africa</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>Australia</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>South America</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360806350000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 160w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 320w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 480w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 640w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 800w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 960w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1120w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1280w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1440w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1600w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1760w,https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360806350000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1016/shutterstock_259431314.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360806350000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock a">
+                                <div class="questionTextBlock">
+                                    <h3>8. Why are phytoplankton important? </h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>They are the base of the food chain in the ocean </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>They are pretty, oh so pretty</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>They are food for seals and sharks</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>They are the top of the food chain in the ocean</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        
+                       
+                       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132360807240000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 160w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 320w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 480w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 640w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 800w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 960w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1120w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1280w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1440w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1600w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1760w,https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132360807240000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1020/shutterstock_158056682.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132360807240000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock c">
+                                <div class="questionTextBlock">
+                                    <h3>9. How many islands are in the Pacific Ocean?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>200</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>1,000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  >
+                                                    <div class="answerTextBlock">
+                                                        <p>2,500</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true >
+                                                    <div class="answerTextBlock">
+                                                        <p>25,000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 quizItem">
+                                <img src="https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;format=auto&amp;quality=30&amp;rnd=132900434350000000" data-srcset="https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=160&amp;height=96&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 160w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=320&amp;height=192&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 320w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=480&amp;height=288&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 480w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=640&amp;height=384&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 640w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=800&amp;height=480&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 800w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=960&amp;height=576&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 960w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1120&amp;height=672&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1120w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1280&amp;height=768&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1280w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1440&amp;height=864&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1440w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1600&amp;height=960&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1600w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1760&amp;height=1056&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1760w,https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1920&amp;height=1152&amp;format=auto&amp;quality=90&amp;rnd=132900434350000000 1920w" data-src="https://cdn2.wanderlust.co.uk/media/1022/shutterstock_535510594.jpg?anchor=center&amp;mode=crop&amp;width=1410&amp;height=846&amp;rnd=132900434350000000" sizes="auto" class="img-fluid w-100 lazyload" />
+                            <div class="questionBlock a">
+                                <div class="questionTextBlock">
+                                    <h3>10.Which marine organism is responsible for the production of most of Earth’s oxygen?</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  data-last-question=true>
+                                                    <div class="answerTextBlock">
+                                                        <p> Coral polyps</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  data-last-question=true>
+                                                    <div class="answerTextBlock">
+                                                        <p>Kelp</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock" data-correct=true data-last-question=true>
+                                                    <div class="answerTextBlock">
+                                                        <p>Phytoplankton</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="answerBlock"  data-last-question=true>
+                                                    <div class="answerTextBlock">
+                                                        <p>Coral polyps</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+        </section>
+       
+        <center><a href="submit.html" class="btn btn-primary">Submit</a></center>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const answerBlocks = document.querySelectorAll('.answerBlock');
+
+      answerBlocks.forEach(function(block) {
+        block.addEventListener('click', function() {
+          const isCorrect = block.getAttribute('data-correct') === 'true';
+          block.classList.add('clicked');
+
+          if (isCorrect) {
+            block.style.backgroundColor = 'green';
+          } else {
+            block.style.backgroundColor = 'red';
+          }
+        });
+      });
+    });
+</script>
+
+<footer class="bg-dark text-light text-center py-3 mt-5">
+    <div class="container">
+        <p>&copy; 2023 Take Action for the Ocean. All rights reserved.</p>
+        <p>Contact: info@takeactionfortheocean.com</p>
+    </div>
+</footer>
+
+</body>
+		
+</html>
